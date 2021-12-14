@@ -1,5 +1,6 @@
 package com.testtask.kafkaspring.unit.controller;
 
+import com.testtask.kafkaspring.controller.KafkaController;
 import com.testtask.kafkaspring.service.KafkaProducer;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

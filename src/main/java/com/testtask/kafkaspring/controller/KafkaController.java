@@ -1,5 +1,4 @@
-package com.testtask.kafkaspring.unit.controller;
-
+package com.testtask.kafkaspring.controller;
 
 import com.testtask.kafkaspring.model.AvroUser;
 import com.testtask.kafkaspring.service.KafkaProducer;
@@ -14,20 +13,14 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class KafkaController {
 
-    private final KafkaProducer producerService;
+    private final KafkaProducer producer;
 
     @PostMapping(value = "/publish")
-    public void sendMessageToKafkaTopic(@RequestParam String name, @RequestParam int age) {
+    public void sendMessageToKafkaTopic(@RequestParam("name") String message, @RequestParam("age") String age) {
         AvroUser user = AvroUser.newBuilder()
-                                .setName(name)
-                                .setAge(age)
+                                .setName(message)
+                                .setAge(Integer.parseInt(age))
                                 .build();
-        this.producerService.produce(user);
+        this.producer.produce(user);
     }
-
-//    @PostMapping(value = "/v2/publish")
-//    public void produce(@RequestParam ) {
-//        new AvroUser();
-//        this.producerService.produceByRest(user);
-//    }
 }
